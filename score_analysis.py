@@ -303,10 +303,8 @@ with tab3:
       st.write('Điểm trung bình homework thấp nhất nhóm 3 là:',min(ZZ2[1]))
       
     elif sl == 4:
-     kmeans = KMeans(n_clusters=4, n_init='auto')
-     kmeans.fit(X) 
-      
-     #nhóm 1 
+      kmeans = KMeans(n_clusters=4, n_init='auto')
+      kmeans.fit(X) 
       #nhóm 1 
       ZZ1=X[kmeans.labels_==0]
       st.write('Điểm GPA cao nhất nhóm 1 là:',max(ZZ1[0]))
@@ -334,6 +332,7 @@ with tab3:
       st.write('Điểm GPA thấp nhất nhóm 4 là:',min(ZZ3[0]))
       st.write('Điểm trung bình homework cao nhất nhóm 4 là:',max(ZZ3[1]))
       st.write('Điểm trung bình homework thấp nhất nhóm 4 là:',min(ZZ3[1]))
+     
     else:
       kmeans = KMeans(n_clusters=5, n_init='auto')
       kmeans.fit(X)
