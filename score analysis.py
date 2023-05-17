@@ -23,6 +23,7 @@ df['S9'].fillna(0, inplace=True)
 df['S10'].fillna(0, inplace=True)
 df['REG-MC4AI'].fillna('N', inplace=True)
 
+#Phân loại nhóm lớp
 def calculate(row):
   if row['CLASS'].find("CV") !=-1:
     return 'Chuyên Văn' 
@@ -46,6 +47,7 @@ def calculate(row):
     return 'Khác'
 df['CLASS-GROUP'] = df.apply(calculate, axis=1)
 
+#Phân loại phòng học
 def calculate3(row):
   if row['PYTHON-CLASS'].find("114") !=-1:
     return '114'
@@ -53,6 +55,7 @@ def calculate3(row):
     return '115' 
 df['Phòng học'] = df.apply(calculate3, axis=1)
 
+#Phân loại lớp sáng chiều
 def calculate2(row):
   if row['PYTHON-CLASS'].find("S") !=-1:
     return 'Sáng'
@@ -60,6 +63,7 @@ def calculate2(row):
     return 'Chiều' 
 df['Buổi học'] = df.apply(calculate2, axis=1)
 
+#Phân loại học sinh lớp chuyên và lớp thường
 def calculate4(row):
   if row['CLASS-GROUP'] =='Khác':
     return 'Thường'
@@ -75,6 +79,7 @@ def calculate5(row):
     return 'Khối 11&12' 
 df['Khối lớp'] = df.apply(calculate5, axis=1)
 
+#Phân loại học sinh có xác định lên lớp hay không
 def calculate1(row):
   if row['GPA'] >=5:
     return 'Y'
@@ -276,19 +281,6 @@ with tab3:
     plt.scatter(kmeans.cluster_centers_[:,0], kmeans.cluster_centers_[:,1])
     st.pyplot(plt.gcf()) # instead of plt.show()
     
-    ZZ1=X[kmeans.labels_==0]
-    st.write('Điểm GPA cao nhất nhóm 1 là:',max(ZZ1[0]))
-    st.write('Điểm GPA thấp nhất nhóm 1 là:',min(ZZ1[0]))
-    st.write('Điểm trung bình homework cao nhất nhóm 1 là:',max(ZZ1[1]))
-    st.write('Điểm trung bình homework thấp nhất nhóm 1 là:',min(ZZ1[1]))
-
-    #nhóm 2
-    ZZ=X[kmeans.labels_==1]
-    st.write('Điểm GPA cao nhất nhóm 2 là:',max(ZZ[0]))
-    st.write('Điểm GPA thấp nhất nhóm 2 là:',min(ZZ[0]))
-    st.write('Điểm trung bình homework cao nhất nhóm 2 là:',max(ZZ[1]))
-    st.write('Điểm trung bình homework thấp nhất nhóm 2 là:',min(ZZ[1]))
-
 with tab4:
     a1 = st.radio('Số đặc trưng', ('2', '3'), horizontal=True)
     if a1 == '2':
